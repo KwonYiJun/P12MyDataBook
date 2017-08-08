@@ -11,10 +11,14 @@ import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 
 /**
@@ -22,8 +26,11 @@ import android.widget.TextView;
  */
 public class BioFragment extends Fragment {
 
-    TextView tvBio;
+    //TextView tvBio;
     Button btnEdit;
+    ListView lv;
+    ArrayList<String> listItems = new ArrayList<String>();
+    ArrayAdapter<String> aa;
 
 
 
@@ -38,12 +45,16 @@ public class BioFragment extends Fragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.biofragment, container, false);
 
-        tvBio = (TextView) view.findViewById(R.id.tvBio);
+        //tvBio = (TextView) view.findViewById(R.id.tvBio);
         btnEdit = (Button) view.findViewById(R.id.btnEdit);
+        lv = (ListView) view.findViewById(R.id.lv);
 
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        String bio = prefs.getString("bio", "");
-        tvBio.setText(bio);
+//        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+//        String bio = prefs.getString("bio", "");
+//        tvBio.setText(bio);
+
+        aa = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, listItems);
+        lv.setAdapter(aa);
 
         btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,7 +71,11 @@ public class BioFragment extends Fragment {
 
                                 EditText etBio = (EditText) passPhrase.findViewById(R.id.etBio);
                                 String bio = etBio.getText().toString();
-                                tvBio.setText(bio);
+                                //tvBio.setText(bio);
+
+                                listItems.add(bio);
+                                aa = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, listItems);
+                                lv.setAdapter(aa);
 
                                 SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
                                 SharedPreferences.Editor prefEdit = prefs.edit();
