@@ -51,7 +51,7 @@ public class BioFragment extends Fragment {
                             public void onClick(DialogInterface dialog, int id) {
 
                                 EditText etBio = (EditText) passPhrase.findViewById(R.id.etBio);
-                                
+                                tvBio.setText(etBio.getText().toString());
                             }
                         })
                         .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
