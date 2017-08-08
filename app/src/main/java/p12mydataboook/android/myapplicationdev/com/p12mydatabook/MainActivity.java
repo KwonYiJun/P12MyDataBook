@@ -49,20 +49,27 @@ public class MainActivity extends AppCompatActivity {
                 Fragment fragment = null;
                 if (position == 0) {
                     fragment = new BioFragment();
+                    FragmentManager fm = getSupportFragmentManager();
+                    FragmentTransaction trans = fm.beginTransaction();
+                    trans.replace(R.id.content_frame, fragment);
+                    trans.commit();
                 } else if (position == 1) {
                     fragment = new VaccinationFragment();
+                    FragmentManager fm = getSupportFragmentManager();
+                    FragmentTransaction trans = fm.beginTransaction();
+                    trans.replace(R.id.content_frame, fragment);
+                    trans.commit();
                 } else if (position == 2) {
                     fragment = new AnniversaryFragment();
+                    FragmentManager fm = getSupportFragmentManager();
+                    FragmentTransaction trans = fm.beginTransaction();
+                    trans.replace(R.id.content_frame, fragment);
+                    trans.commit();
                 } else if (position == 3) {
-                    //Intent i = new Intent(MainActivity.this, NewActivity.class);
-                    //startActivity(i);
+                    Intent i = new Intent(MainActivity.this, AboutUs.class);
+                    startActivity(i);
                 }
 
-
-                FragmentManager fm = getSupportFragmentManager();
-                FragmentTransaction trans = fm.beginTransaction();
-                trans.replace(R.id.content_frame, fragment);
-                trans.commit();
 
                 // Highlight the selected item,
                 //  update the title, and close the drawer
