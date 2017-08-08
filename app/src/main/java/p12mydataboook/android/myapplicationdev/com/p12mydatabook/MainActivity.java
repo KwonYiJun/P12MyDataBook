@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawerList = (ListView) findViewById(R.id.left_drawer);
 
-        drawerItems = new String[]{"Bio", "Vaccination", "Anniversary"};
+        drawerItems = new String[]{"Bio", "Vaccination", "Anniversary", "About Us"};
         ab = getSupportActionBar();
 
         aa = new ArrayAdapter<String>(this,
