@@ -18,15 +18,13 @@ import android.widget.ListView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ActionBarDrawerToggle drawerToggle;
-
-    private String[] drawerItems;
-    private DrawerLayout drawerLayout;
-    private ListView drawerList;
     ArrayAdapter<String> aa;
     String currentTitle;
     ActionBar ab;
-
+    private ActionBarDrawerToggle drawerToggle;
+    private String[] drawerItems;
+    private DrawerLayout drawerLayout;
+    private ListView drawerList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,15 +47,17 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
 
                 Fragment fragment = null;
-                if (position == 0)
+                if (position == 0) {
                     fragment = new BioFragment();
-                else if (position == 1)
+                } else if (position == 1) {
                     fragment = new VaccinationFragment();
-                else if (position == 2)
+                } else if (position == 2) {
                     fragment = new AnniversaryFragment();
-                else if (position == 3)
-                    Intent i = new Intent(MainActivity.this, NewActivity.class);
-                    startActivity(i);
+                } else if (position == 3) {
+                    //Intent i = new Intent(MainActivity.this, NewActivity.class);
+                    //startActivity(i);
+                }
+
 
                 FragmentManager fm = getSupportFragmentManager();
                 FragmentTransaction trans = fm.beginTransaction();
