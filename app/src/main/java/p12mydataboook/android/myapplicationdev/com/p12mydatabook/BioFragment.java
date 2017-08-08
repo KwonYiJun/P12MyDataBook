@@ -3,7 +3,9 @@ package p12mydataboook.android.myapplicationdev.com.p12mydatabook;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
@@ -23,6 +25,8 @@ public class BioFragment extends Fragment {
     TextView tvBio;
     Button btnEdit;
 
+
+
     public BioFragment() {
         // Required empty public constructor
     }
@@ -36,6 +40,10 @@ public class BioFragment extends Fragment {
 
         tvBio = (TextView) view.findViewById(R.id.tvBio);
         btnEdit = (Button) view.findViewById(R.id.btnEdit);
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        String bio = prefs.getString("bio", "");
+        tvBio.setText(bio);
 
         btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,7 +59,13 @@ public class BioFragment extends Fragment {
                             public void onClick(DialogInterface dialog, int id) {
 
                                 EditText etBio = (EditText) passPhrase.findViewById(R.id.etBio);
-                                tvBio.setText(etBio.getText().toString());
+                                String bio = etBio.getText().toString();
+                                tvBio.setText(bio);
+
+                                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+                                SharedPreferences.Editor prefEdit = prefs.edit();
+                                prefEdit.putString("bio", bio);
+                                prefEdit.commit();
                             }
                         })
                         .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
